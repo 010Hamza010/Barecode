@@ -7,7 +7,7 @@ import OnWrite
 
 
 def ReadSerial(ser):
-	return ser.read_until(settings.EOF)[:-1]
+	return ser.read_until(settings.EOF)[:len(settings.EOF)*(-1)]
 
 def main():
 	print(f"Trying to open serial port '{settings.PORT}'...")
@@ -18,7 +18,7 @@ def main():
 		print("Failed to open serial port.")
 		print(e)
 		return
-	
+
 	except KeyboardInterrupt:
 		print("Exiting...")
 		ser.close()
